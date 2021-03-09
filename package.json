@@ -11,6 +11,9 @@
     "webpack": "^5.24.4",
     "webpack-cli": "^4.5.0"
   },
+  "scripts": {
+    "build": "npx webpack"
+  },
   "author": "",
   "license": "MIT"
 }
