@@ -1,0 +1,43 @@
+image: node:latest
+
+cache:
+    paths:
+        - node_modules/
+
+stages:
+    - setup
+    - build
+    - deploy
+
+setup:
+    stage: setup
+    script:
+        - echo "Setup started"
+        - npm install
+    artifacts:
+        paths:
+            - node_modules/
+    only:
+        - master
+
+build:
+    stage: build
+    script: 
+        - npm run build
+    artifacts:
+        paths:
+            - dist/
+    only:
+        - master
+
+pages:
+    stage: deploy
+    script:
+        - mkdir .public
+        - cp -r dist .public
+        - mv .public public
+    artifacts:
+        paths:
+            - public
+    only:
+        - master
